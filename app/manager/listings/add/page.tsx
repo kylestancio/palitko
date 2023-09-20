@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { useRouter } from 'next/navigation'
+import { revalidatePath } from 'next/cache'
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
@@ -30,8 +31,6 @@ export default function AddListingPage() {
   })
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    // console.log(values)
-    // console.log(`${process.env.NEXT_PUBLIC_API_URL}/manager/listings/add`)
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/manager/listings/add`, {
       method: 'POST',
       headers: {
@@ -39,7 +38,6 @@ export default function AddListingPage() {
       },
       body: JSON.stringify(values)
     })
-    
     router.push(`${process.env.NEXT_PUBLIC_URL}/manager/listings`)
   }
 
