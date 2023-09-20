@@ -1,26 +1,24 @@
+import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import React from 'react'
+import { authOptions } from '../api/auth/[...nextauth]/route';
 
-export default function ManagerPage() {
+export default async function ManagerPage() {
 
-  // PLACEHOLDER
-  const user = {
-    id: 1,
-    name: "Admin 1",
-    username: "admin1",
-    role: "admin",
-  }
+  const session = await getServerSession(authOptions);
+  const user = session ? session.user : null;
 
-  if ( !['admin', 'staff'].includes(user?.role)){
-    return (
-      <div className='w-screen h-[calc(100vh-63px)] flex'>
-        <div className='m-auto'>
-          <Image src={'/pose_kuyashii_man.png'} alt='pose kuyashii man' className={'mx-auto'} width={300} height={300} />
-          <h1 className="text-5xl font-black m-auto">You are not allowed to access this page.</h1>
-        </div>
-      </div>
-    )
-  }
+  // if (user && !['admin', 'staff'].includes(user.role)){
+  //   return (
+  //     <div className='w-screen h-[calc(100vh-63px)] flex'>
+  //       <div className='m-auto'>
+  //         <Image src={'/pose_kuyashii_man.png'} alt='pose kuyashii man' className={'mx-auto'} width={300} height={300} />
+  //         <h1 className="text-5xl font-black m-auto">You are not allowed to access this page.</h1>
+  //         <p>{JSON.stringify(user)}</p>
+  //       </div>
+  //     </div>
+  //   )
+  // }
 
   return (
     <div>

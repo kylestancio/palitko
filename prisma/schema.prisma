@@ -12,8 +12,8 @@ datasource db {
 
 model User {
   id          Int           @id @default(autoincrement())
-  status      String
-  role        String
+  status      String        @default("waiting_confirmation")
+  role        String        @default("user")
   firstName   String
   lastName    String
   birthdate   DateTime

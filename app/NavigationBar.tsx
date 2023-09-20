@@ -2,8 +2,17 @@ import Link from 'next/link'
 import React from 'react'
 import ThemeButton from './ThemeButton'
 import CartButton from './CartButton'
+import LogoutButton from './LogoutButton'
+import { getServerSession } from 'next-auth'
+import LoginButton from './LoginButton'
+import SignUpButton from './SignUpButton'
+import { authOptions } from './api/auth/[...nextauth]/route'
 
-export default function NavigationBar() {
+export default async function NavigationBar() {
+
+  const session = await getServerSession(authOptions);
+  const user = session ? session.user : null;
+
   return (
     <div className='w-full h-14 border-b'>
       <div className='h-full container flex py-2'>
@@ -14,11 +23,22 @@ export default function NavigationBar() {
           <Link href={'/categories'} className='hover:underline underline-offset-8 me-3'>Categories</Link>
         </div>
         <div className='h-full my-auto flex gap-3'>
+          { user && 
+            <>
+              <CartButton />
+              <div className='h-full aspect-square bg-gray-300 dark:bg-gray-900 rounded-md'>
+                {/* AVATAR PLACEHOLDER */}
+              </div>
+              <LogoutButton />
+            </>
+          }
+          { !user && 
+            <>
+              <LoginButton />
+              <SignUpButton />
+            </>
+          }
           <ThemeButton />
-          <CartButton />
-          <div className='h-full aspect-square bg-gray-300 dark:bg-gray-900 rounded-md'>
-            {/* AVATAR PLACEHOLDER */}
-          </div>
         </div>
       </div>
     </div>
