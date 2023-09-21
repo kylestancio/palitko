@@ -6,8 +6,13 @@ import { Heart, ShoppingCart } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 import ActionButtons from './ActionButtons'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
 export default async function ListingDetailsPage({params}:{params:{listingId:string}}) {
+
+  const session = await getServerSession(authOptions)
+  const user = session ? session.user : null;
 
   const listing = await prisma.product.findFirst({
     where: {
@@ -43,9 +48,15 @@ export default async function ListingDetailsPage({params}:{params:{listingId:str
             { listing.categories.length > 0 && 
               <h2 className="text-xl font-bold text-zinc-500">{listing.categories.join(',')}</h2>
             }
-            <p className='my-14'><span className='text-6xl font-black'>₱{listing.price.toFixed(0)}</span><span className='text-2xl'>.{listing.price.toFixed(2).toString().slice(-2)}</span></p>
-            
-            <ActionButtons productId={listing.id} />
+            <div className='my-14'>
+              <p><span className='text-6xl font-black'>₱{listing.price.toFixed(0)}</span><span className='text-2xl'>.{listing.price.toFixed(2).toString().slice(-2)}</span></p>
+              { listing.quantityInStock > 0 ?   
+                <p>In Stock: {listing.quantityInStock}</p>
+                :
+                <p className='text-red-600'>Out of stock.</p>
+              }
+            </div>
+            <ActionButtons productId={listing.id} quantityInStock={listing.quantityInStock} user={user} />
           </div>
         </div>
 
