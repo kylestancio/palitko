@@ -49,7 +49,7 @@ export default function ListinigsContainer() {
                 { listing.categories.length > 0 && 
                   <p className='text-zinc-500 truncate mb-3'>{listing.categories.join(',')}</p>
                 }
-                <p>Php {listing.price.toFixed(2 )}</p>
+                <p>Php {listing.price.toFixed(2)}</p>
               </Link>
             ))}
           </div>

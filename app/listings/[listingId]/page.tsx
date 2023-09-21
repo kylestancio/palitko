@@ -17,6 +17,13 @@ export default async function ListingDetailsPage({params}:{params:{listingId:str
   const listing = await prisma.product.findFirst({
     where: {
       id: Number(params.listingId)
+    },
+    include: {
+      Save: {
+        where: {
+          userId: user.id
+        }
+      }
     }
   })
 
