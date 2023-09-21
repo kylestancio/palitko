@@ -1,9 +1,11 @@
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import prisma from '@/lib/db'
 import { Heart, ShoppingCart } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
+import ActionButtons from './ActionButtons'
 
 export default async function ListingDetailsPage({params}:{params:{listingId:string}}) {
 
@@ -27,7 +29,7 @@ export default async function ListingDetailsPage({params}:{params:{listingId:str
   return (
     <div>
       <div className='container mt-7'>
-        <div className='grid grid-cols-12 gap-36'>
+        <div className='grid grid-cols-12 gap-10'>
           <div className='col-span-4'>
             <div className='w-full h-[600px] bg-zinc-100 dark:bg-zinc-900 rounded-xl'>
               {/* IMAGE CONTAINER */}
@@ -42,9 +44,8 @@ export default async function ListingDetailsPage({params}:{params:{listingId:str
               <h2 className="text-xl font-bold text-zinc-500">{listing.categories.join(',')}</h2>
             }
             <p className='my-14'><span className='text-6xl font-black'>₱{listing.price.toFixed(0)}</span><span className='text-2xl'>.{listing.price.toFixed(2).toString().slice(-2)}</span></p>
-
-            <Button className='me-3'><ShoppingCart className='me-3' />Add to Cart</Button>
-            <Button className='me-3'><Heart className='me-3' />Favorite</Button>
+            
+            <ActionButtons productId={listing.id} />
           </div>
         </div>
 

@@ -2,6 +2,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import NavigationBar from './NavigationBar'
 import Providers from './Providers'
+import { Toaster } from "@/components/ui/toaster"
+
 
 export const metadata: Metadata = {
   title: 'PALITKO',
@@ -22,6 +24,7 @@ export default function RootLayout({
           <main>
             {children}
           </main>
+          <Toaster />
         </Providers>
       </body>
     </html>

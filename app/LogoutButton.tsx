@@ -8,6 +8,6 @@ import React from 'react'
 export default function LogoutButton() {
 
   return (
-    <Button variant={'destructive'} size={'icon'} onClick={() => signOut()}><LogOut /></Button>
+    <Button variant={'destructive'} size={'icon'} onClick={() => signOut()}><LogOut size={20} /></Button>
   )
 }
