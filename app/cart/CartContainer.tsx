@@ -51,25 +51,7 @@ export default function CartContainer() {
   }
 
   const handleCheckout = async () => {
-    const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart/checkout`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    }).then(res=>res.json())
-
-    if (result.status === 'error'){
-      toast({
-        title: result.message
-      })
-    }else{
-      toast({
-        title: 'Checkout Successful'
-      })
-      getData().then(data=>setCartItems(data))
-    }
-
-
+    router.push('/cart/checkout')
   }
 
   useEffect(()=>{

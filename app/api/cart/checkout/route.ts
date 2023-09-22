@@ -3,11 +3,17 @@ import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "../../auth/[...nextauth]/route";
 
+interface IRequestBody {
+  method: 'gcash' | 'instore',
+  referenceCode?: string
+}
 
 export async function POST(req: NextRequest){
 
   const session = await getServerSession(authOptions)
   const user = session ? session.user : null;
+
+  const body:IRequestBody = await req.json()
 
   var errorFlag = false
   var errorMessage = "";
@@ -32,10 +38,12 @@ export async function POST(req: NextRequest){
     // END CHECK VALIDITY OF CHECKOUT
 
     if (errorFlag){
+      console.error('Something went wrong')
       return NextResponse.json({status: 'error', message: errorMessage})
     }
 
-    await prisma.transaction.create({
+    const paymentCode = generateCode(6);
+    const transaction = await prisma.transaction.create({
       data: {
         userId: user.id,
         TransactionProduct: {
@@ -50,7 +58,19 @@ export async function POST(req: NextRequest){
             })
           }
         },
+        Payment: {
+          create: {
+            method: body.method,
+            code: paymentCode,
+            status: 'unconfirmed',
+            referenceCode: body.referenceCode,
+            amount: cartItems.reduce((a, item)=> a + (item.product.price*item.quantity), 0)
+          }
+        },
         status: 'unpaid',
+      },
+      include: {
+        Payment: true
       }
     })
 
@@ -77,10 +97,19 @@ export async function POST(req: NextRequest){
     })
     // END CLEAR ALL CART ITEMS
 
-    return NextResponse.json({status: 'ok', message: 'checkout successful'})
+    return NextResponse.json({status: 'ok', message: 'checkout successful', data: {
+      referenceCode: paymentCode
+    }})
 
   }catch(err){
     console.error(err);
     return NextResponse.error();
   }
+}
+
+function generateCode(length:number = 5) {
+  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  var result = '';
+  for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+  return result;
 }
