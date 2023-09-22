@@ -5,9 +5,20 @@ import { Input } from '@/components/ui/input'
 import { Heart, Loader2, ShoppingCart } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { useToast } from "@/components/ui/use-toast"
-import { Save, User } from '@prisma/client'
+import { User } from '@prisma/client'
 import { signIn } from 'next-auth/react'
-import prisma from '@/lib/db'
+// import { zodResolver } from "@hookform/resolvers/zod"
+// import { useForm } from "react-hook-form"
+// import * as z from "zod"
+// import {
+//   Form,
+//   FormControl,
+//   FormDescription,
+//   FormField,
+//   FormItem,
+//   FormLabel,
+//   FormMessage,
+// } from "@/components/ui/form"
 
 export default function ActionButtons({
     productId, 
@@ -24,6 +35,10 @@ export default function ActionButtons({
   const { toast } = useToast()
   const [quantity, setQuantity] = useState(0)
   const [savedStatus, setSavedStatus] = useState<boolean>()
+
+  // const FormSchema = z.object({
+  //   quantity: z.coerce.number().gt(0).lte(quantity).default(1),
+  // })
 
   const getSavedStatus = async (_productId:number) => {
     const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/saved/list`)

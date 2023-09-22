@@ -36,6 +36,7 @@ model Product {
   price           Float
   quantityInStock Int
   description     String
+  imageLink       String?
   Cart            Cart[]
   Save            Save[]
   createdAt       DateTime @default(now())

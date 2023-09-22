@@ -43,7 +43,10 @@ export default async function ListingDetailsPage({params}:{params:{listingId:str
       <div className='container mt-7'>
         <div className='grid grid-cols-12 gap-10'>
           <div className='col-span-4'>
-            <div className='w-full h-[600px] bg-zinc-100 dark:bg-zinc-900 rounded-xl'>
+            <div className='relative w-full h-[600px] bg-zinc-100 dark:bg-zinc-900 rounded-xl overflow-hidden'>
+              { listing.imageLink && 
+                <Image src={`${process.env.NEXT_PUBLIC_IMAGE_API_URL}${process.env.NEXT_PUBLIC_IMAGE_PATH}/${listing.imageLink}`} alt='image' className='object-cover object-center' fill />
+              }
               {/* IMAGE CONTAINER */}
             </div>
           </div>
