@@ -26,7 +26,7 @@ export default function Home() {
             <h1 className="text-2xl mb-5">Categories</h1>
             <ViewMoreButton href='/categories' />
           </div>
-          <div className="grid grid-cols-6 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
             { categoriesList.map((category, i)=>(
               <Link key={i} href={category.link}>
                 <div className="w-full h-full flex aspect-square bg-zinc-100 rounded-lg">
@@ -42,20 +42,20 @@ export default function Home() {
             <h1 className="text-2xl mb-5">New Arrivals</h1>
             <ViewMoreButton href='/categories/new' />
           </div>
-          <div className="grid grid-cols-4 grid-rows-2 gap-2">
-            <div className="w-full col-span-2 row-span-2 bg-zinc-100">
+          <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-2">
+            <div className="relative w-full h-72 md:h-auto p-5 col-span-2 row-span-2 bg-zinc-100">
               <p className="text-zinc-950">0</p>
             </div>
-            <div className="w-full h-60 bg-zinc-100">
+            <div className="relative w-full p-5 h-60 bg-zinc-100">
               <p className="text-zinc-950">1</p>
             </div>
-            <div className="w-full h-60 bg-zinc-100">
+            <div className="relative w-full p-5 h-60 bg-zinc-100">
               <p className="text-zinc-950">2</p>
             </div>
-            <div className="w-full h-60 bg-zinc-100">
+            <div className="relative w-full p-5 h-60 bg-zinc-100">
               <p className="text-zinc-950">3</p>
             </div>
-            <div className="w-full h-60 bg-zinc-100">
+            <div className="relative w-full p-5 h-60 bg-zinc-100">
               <p className="text-zinc-950">4</p>
             </div>
           </div>
