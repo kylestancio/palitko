@@ -7,6 +7,7 @@ import { getServerSession } from 'next-auth'
 import LoginButton from './LoginButton'
 import SignUpButton from './SignUpButton'
 import { authOptions } from './api/auth/[...nextauth]/route'
+import SideBar from './SideBar'
 
 export default async function NavigationBar() {
 
@@ -16,8 +17,10 @@ export default async function NavigationBar() {
   return (
     <div className='w-full h-14 border-b'>
       <div className='h-full container flex py-2'>
-        <p className='text-3xl font-medium my-auto'>PALIT<span className='font-black'>KO</span></p>
-        <div className='my-auto mx-3 grow'>
+        <SideBar />
+        <p className='text-3xl font-medium my-auto hidden lg:block'>PALIT<span className='font-black'>KO</span></p>
+        <p className='text-3xl font-medium my-auto block lg:hidden grow lg:grow-0'>P</p>
+        <div className='my-auto mx-3 grow hidden lg:block'>
           <Link href={'/'} className='hover:underline underline-offset-8 me-3'>Home</Link>
           <Link href={'/listings'} className='hover:underline underline-offset-8 me-3'>Listings</Link>
           <Link href={'/categories'} className='hover:underline underline-offset-8 me-3'>Categories</Link>
