@@ -4,6 +4,7 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -26,7 +27,12 @@ export const authOptions = {
             username: true,
             password: true
           }
+        }).catch((err)=> {
+          console.error(err)
+          throw new Error("Something went wrong")
         })
+
+
         if (user && bcrypt.compareSync(credentials?.password || '', user.password) ) {
           const { password, ...data } = user;
           return data
