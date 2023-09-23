@@ -22,7 +22,7 @@ export default function SideBar() {
     if (open){
       document.documentElement.style.overflow = 'hidden';
     }else{
-      document.documentElement.style.overflow = 'scroll';
+      document.documentElement.style.overflow = 'auto';
     }
   }, [open])
 
