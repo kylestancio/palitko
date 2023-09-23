@@ -37,7 +37,7 @@ export default function ListinigsContainer() {
       { listings && listings.length > 0 &&
         <>
           <p className='mb-3'>Displaying {listings.length} item{listings.length > 1 && 's'}.</p>
-          <div className='grid grid-cols-5 gap-2'>
+          <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2'>
             { listings.map((listing, i)=>(
               <Link key={i} href={`listings/${listing.id}`}>
                 <div className='relative w-full h-[300px] bg-zinc-100 dark:bg-zinc-900 rounded-lg overflow-hidden'>

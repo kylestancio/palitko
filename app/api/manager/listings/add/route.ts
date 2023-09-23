@@ -32,8 +32,6 @@ export async function POST(req: NextRequest){
 
     if (_image){
       // sanitize filename
-      console.log(`ORIGINAL FILENAME: ${_image.name}`)
-      console.log(`FILENAME[last indet]: ${_image.name.split('.')[_image.name.split('.').length - 1]}`)
       const date = new Date()
       var filename = `${
         createdProduct.id}_${ 
@@ -41,7 +39,7 @@ export async function POST(req: NextRequest){
             .replaceAll('-', '_')
             .replaceAll(':','_')
             .replaceAll(':','_')
-            .replaceAll('.','_')}`
+            .replaceAll('.','_')}.`
               .concat('',_image.name.split('.')[_image.name.split('.').length - 1])
 
       var data = new FormData()

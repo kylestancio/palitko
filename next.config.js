@@ -17,6 +17,14 @@ const nextConfig = {
         // pathname: '/',
       },
     ],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: '192.168.0.51',
+        port: '8080',
+        // pathname: '/',
+      },
+    ],
   },
 }
 
