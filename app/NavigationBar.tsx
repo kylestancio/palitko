@@ -8,6 +8,7 @@ import LoginButton from './LoginButton'
 import SignUpButton from './SignUpButton'
 import { authOptions } from './api/auth/[...nextauth]/route'
 import SideBar from './SideBar'
+import OrdersButton from './OrdersButton'
 
 export default async function NavigationBar() {
 
@@ -29,6 +30,7 @@ export default async function NavigationBar() {
           { user && 
             <>
               <CartButton />
+              <OrdersButton />
               <div className='h-full aspect-square bg-gray-300 dark:bg-gray-900 rounded-md'>
                 {/* AVATAR PLACEHOLDER */}
               </div>
