@@ -84,13 +84,10 @@ export default function CartContainer() {
                     <p className='font-bold hover:underline underline-offset-4'>{cartItem.product.name}</p>
                   </Link>
                   <p>Qty: {cartItem.quantity}</p>
-                  {/* <p>{ listing.categories.length > 0 && listing.categories.join(', ')}</p>
-                  <p>{ listing.categories.length === 0 && 'no tags'}</p>
-                  <p>In stock: {listing.quantityInStock}</p> */}
+                  <p>Subtotal: Php {(cartItem.quantity * cartItem.product.price).toFixed(2) }</p>
                 </div>
                 <div className='my-auto flex gap-1'>
                   <Button variant={'ghost'} size={'icon'} onClick={()=>handleView(cartItem.productId)}><Eye /></Button>
-                  {/* <Button variant={'ghost'} size={'icon'} onClick={()=>handleEdit(listing.id)}><Edit /></Button> */}
                   <Button variant={'ghost'} size={'icon'} onClick={()=>handleRemove(cartItem.id)}><X /></Button>
                 </div>
               </div>
