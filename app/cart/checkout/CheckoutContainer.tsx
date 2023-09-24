@@ -38,8 +38,8 @@ export default function CheckoutContainer() {
       }
 
       { cartItems && cartItems.length > 0 && 
-        <div className='grid grid-cols-2 gap-3 rounded-lg border overflow-hidden'>
-          <div className='bg-zinc-100 dark:bg-zinc-900 p-14'>
+        <div className='grid -mx-7 lg:-mx-0 lg:grid-cols-2 gap-3 rounded-lg border overflow-hidden'>
+          <div className='bg-zinc-100 dark:bg-zinc-900 p-4 lg:p-14'>
             <h2 className='text-2xl mb-14'>My Items</h2>
             <div className='px-3'>
               { cartItems.map((item) => (
@@ -59,7 +59,7 @@ export default function CheckoutContainer() {
               <p className='text-4xl my-auto'>Php {cartItems.reduce((a, item)=>a + item.product.price * item.quantity, 0).toFixed(2).toLocaleString()}</p>
             </div>
           </div>
-          <PaymentContainer className='p-14' />
+          <PaymentContainer className='p-4 lg:p-14' />
         </div>
       }
     </div>

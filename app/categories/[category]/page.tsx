@@ -40,7 +40,7 @@ export default function CategoryPage({params}:{params:{category:string}}) {
 
       <div className="container">
         <section>
-          <div className='grid grid-cols-5 gap-2'>
+          <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2'>
               { [...new Array(20)].map((_, i)=>(
                 <Link key={i} href={'/listings/1'}>
                   <div className='w-full h-[300px] bg-zinc-100 dark:bg-zinc-900 rounded-lg'>

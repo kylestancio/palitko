@@ -16,20 +16,7 @@ export default function PaymentContainer({className}:{className?:string}) {
   const [paymentDone, setPaymentDone] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<string>()
   const [paymentCode, setPaymentCode] = useState<string>()
-
   const [gcashReferenceCode, setGcashReferenceCode] = useState('')
-
-  // const handlePayWithGCash = () => {
-  //   setPaymentDone(true)
-  //   setPaymentMethod('gcash')
-  //   handleCheckout().then(data => setPaymentCode(data.data.referenceCode))
-  // }
-
-  // const handlePayInStore = () => {
-  //   setPaymentDone(true)
-  //   setPaymentMethod('instore')
-  //   handleCheckout().then(data => setPaymentCode(data.data.referenceCode))
-  // }
 
   const handleCheckout = async (method:string) => {
     
@@ -59,7 +46,7 @@ export default function PaymentContainer({className}:{className?:string}) {
         <div className='flex flex-col gap-3'>
           <div className='p-3 border rounded-lg'>
             <Image src={'/gcash_logo.png'} alt='gcash logo' width={100} height={80} className='mx-auto' quality={10} />
-            <div className='relative w-full h-60 rounded-lg overflow-hidden mb-3'>
+            <div className='relative w-full h-36 sm:h-72 lg:h-60 rounded-lg overflow-hidden mb-3'>
               <Image src={'/gcash_account.png'} alt={'gcash account'} className='object-cover object-center' fill />
             </div>
             <Label htmlFor='gcashReferenceCode' className='text-sm'>GCash Payment Reference Number</Label>
@@ -76,7 +63,7 @@ export default function PaymentContainer({className}:{className?:string}) {
   return (
     <div className={cn('', className)}>
       <h2 className='text-2xl mb-14'>Payment</h2>
-      <div className='w-full h-72 flex'>
+      <div className='w-full flex'>
         { !paymentCode && 
           <div className='m-auto'>
             <Loader2 className='mx-auto mb-3 animate-spin' size={50} />
@@ -90,15 +77,19 @@ export default function PaymentContainer({className}:{className?:string}) {
             <p className='text-3xl text-center mb-2'>Payment Information Sent</p>
             { paymentMethod && paymentMethod==='gcash' && 
               <>
-                <p className='text-center mb-3'>Your payment has been registered. Please wait for 3 business days to complete the process.</p>
-                <p className='text-center'>You can visit our actual store to speed up the process.</p>
+                <p className='text-center mb-3'>Your payment has been registered. Please wait for 1-3 business days to complete the process.</p>
+                <p className='text-center mb-5'>You can visit our actual store to speed up the process.</p>
+                <p className='text-center font-bold'>GCash Reference Number</p>
+                <p className='text-center mb-5'>{gcashReferenceCode}</p>
+                <p className='text-center font-bold'>Reference Number</p>
+                <p className='text-center text-4xl'>{paymentCode}</p>
               </>
             }
 
             {paymentMethod && paymentMethod==='instore' && 
               <>
                 <p className='text-center mb-10'>Your payment has been registered. You can go to the store to pay by presenting this reference number to the staff.</p>
-                <p className='text-center'>Reference Number</p>
+                <p className='text-center font-bold'>Reference Number</p>
                 <p className='text-center text-4xl'>{paymentCode}</p>
               </>
             }

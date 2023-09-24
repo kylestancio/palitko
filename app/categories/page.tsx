@@ -20,10 +20,10 @@ export default function CategoriesPage() {
           <div className="flex justify-between">
             <h1 className="text-2xl mb-5">Categories</h1>
           </div>
-          <div className="grid grid-cols-4 gap-2">
+          <div className="grid  lg:grid-cols-4 gap-2">
             { categoriesList.map((category, i)=>(
               <Link key={i} href={category.link}>
-                <div className="w-full h-full flex aspect-square bg-zinc-100 rounded-lg">
+                <div className="w-full h-32 lg:h-full flex lg:aspect-square bg-zinc-100 rounded-lg">
                   <p className="m-auto text-3xl font-bold dark:text-zinc-950">{category.name}</p>
                 </div>
               </Link>
