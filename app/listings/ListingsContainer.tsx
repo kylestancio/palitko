@@ -1,5 +1,6 @@
 'use client'
 
+import { Badge } from '@/components/ui/badge';
 import { Product } from '@prisma/client';
 import { ListEnd, Loader2 } from 'lucide-react'
 import Image from 'next/image';
@@ -43,6 +44,16 @@ export default function ListinigsContainer() {
                 <div className='relative w-full h-[300px] bg-zinc-100 dark:bg-zinc-900 rounded-lg overflow-hidden'>
                   { listing.imageLink && 
                     <Image src={`${process.env.NEXT_PUBLIC_IMAGE_API_URL}${process.env.NEXT_PUBLIC_IMAGE_PATH}/${listing.imageLink}`} alt='image' className='object-cover object-center' fill />
+                  }
+                  { listing.quantityInStock === 0 && 
+                    <div className='absolute w-full h-full bg-zinc-950 z-20 bg-opacity-90 flex hover:bg-opacity-25 transition-all'>
+                      <p className="m-auto text-center text-4xl text-red-500 font-bold">Out of stock</p>
+                    </div>
+                  }
+                  { listing.quantityInStock <= 5 && listing.quantityInStock > 0 && 
+                    <div className='absolute w-full h-full p-3'>
+                      <Badge>{listing.quantityInStock} left</Badge>
+                    </div>
                   }
                   {/* IMAGE CONTAINER */}
                 </div>
