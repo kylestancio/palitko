@@ -29,7 +29,7 @@ export default function SideBar() {
   return (
     <div>
       <Button variant={'outline'} size={'icon'} className='me-3 lg:hidden' onClick={()=>setOpen(true)}><HamburgerMenuIcon /></Button>
-      <div className={cn('z-10 transition absolute top-0 bottom-0 left-0 max-w-[400px] bg-zinc-200 shadow-md outline outline-1 outline-r outline-zinc-400 p-7 -translate-x-[400px]', open && 'translate-x-0')}>
+      <div className={cn('z-10 transition absolute top-0 bottom-0 left-0 max-w-[400px] bg-zinc-200 dark:bg-zinc-900 shadow-md outline outline-1 outline-r outline-zinc-400 p-7 -translate-x-[400px]', open && 'translate-x-0')}>
         <div className='flex justify-between mb-5'>
           <h1 className='text-2xl font-bold'>PALITKO</h1>
           <Button variant={'ghost'} size={'icon'} onClick={()=>setOpen(false)}><X /></Button>
