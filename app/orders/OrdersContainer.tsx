@@ -57,7 +57,7 @@ export default function OrdersContainer() {
           { transactions.map((transaction) => (
             <div key={transaction.id} className='mb-7'>
               <div className='mb-5'>
-                <h3 className='text-2xl'>{new Date(transaction.createdAt).getDay()} {monthName[new Date(transaction.createdAt).getMonth()]} {new Date(transaction.createdAt).getFullYear()}</h3>
+                <h3 className='text-2xl'>{new Date(transaction.createdAt).getDate()} {monthName[new Date(transaction.createdAt).getMonth()]} {new Date(transaction.createdAt).getFullYear()}</h3>
                 <p>{new Date(transaction.createdAt).getHours()}:{new Date(transaction.createdAt).getMinutes()}</p>
                 <p>Transaction Id: {transaction.id}</p>
                 <p>Status: &nbsp;
