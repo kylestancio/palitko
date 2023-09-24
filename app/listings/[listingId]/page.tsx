@@ -19,11 +19,7 @@ export default async function ListingDetailsPage({params}:{params:{listingId:str
       id: Number(params.listingId)
     },
     include: {
-      Save: {
-        where: {
-          userId: user.id
-        }
-      }
+      Save: true
     }
   })
 
@@ -41,16 +37,16 @@ export default async function ListingDetailsPage({params}:{params:{listingId:str
   return (
     <div>
       <div className='container mt-7'>
-        <div className='grid grid-cols-12 gap-10'>
-          <div className='col-span-4'>
-            <div className='relative w-full h-[600px] bg-zinc-100 dark:bg-zinc-900 rounded-xl overflow-hidden'>
+        <div className='grid lg:grid-cols-12 gap-10'>
+          <div className='lg:col-span-4 -mx-7 lg:-mx-0'>
+            <div className='relative w-full h-[400px] lg:h-[600px] bg-zinc-100 dark:bg-zinc-900 rounded-xl overflow-hidden'>
               { listing.imageLink && 
                 <Image src={`${process.env.NEXT_PUBLIC_IMAGE_API_URL}${process.env.NEXT_PUBLIC_IMAGE_PATH}/${listing.imageLink}`} alt='image' className='object-cover object-center' fill />
               }
               {/* IMAGE CONTAINER */}
             </div>
           </div>
-          <div className='col-span-8'>
+          <div className='lg:col-span-8'>
             <h1 className="text-3xl font-bold">{listing.name}</h1>
             { listing.categories.length === 0 && 
               <h2 className="text-xl font-bold text-zinc-500">Uncategorized</h2>

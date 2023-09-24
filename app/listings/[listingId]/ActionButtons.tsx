@@ -41,6 +41,8 @@ export default function ActionButtons({
   // })
 
   const getSavedStatus = async (_productId:number) => {
+    if (!user) return [];
+    
     const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/saved/list`)
     .then(res=>res.json())
     .then(data=>data.Saved.includes(_productId))
