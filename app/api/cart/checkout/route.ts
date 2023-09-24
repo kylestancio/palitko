@@ -67,7 +67,7 @@ export async function POST(req: NextRequest){
             amount: cartItems.reduce((a, item)=> a + (item.product.price*item.quantity), 0)
           }
         },
-        status: 'unpaid',
+        status: body.method==='gcash'?'processing':'unpaid',
       },
       include: {
         Payment: true

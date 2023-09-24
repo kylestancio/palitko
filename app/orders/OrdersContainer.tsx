@@ -61,8 +61,9 @@ export default function OrdersContainer() {
                 <p>{new Date(transaction.createdAt).getHours()}:{new Date(transaction.createdAt).getMinutes()}</p>
                 <p>Transaction Id: {transaction.id}</p>
                 <p>Status: &nbsp;
-                  { transaction.status==='unpaid' && <span className='text-red-500'>Unpaid</span>}
-                  { transaction.status==='paid' && <span className='text-green-500'>Paid</span>}
+                  { transaction.status==='unpaid' && <span className='text-red-500'>Unpaid</span> }
+                  { transaction.status==='paid' && <span className='text-green-500'>Paid</span> }
+                  { transaction.status==='processing' && <span className='text-yellow-500'>Processing</span> }
                 </p>
               </div>
               <div>
