@@ -16,7 +16,7 @@ export async function POST(req: NextRequest){
   const _description: string | null = body.get('description') as unknown as string
   const _price: number | null = body.get('price') as unknown as number
   const _quantityInStock: number | null = body.get('quantityInStock') as unknown as number
-  const _image: File | null = body.get('image') as unknown as File
+  // const _image: File | null = body.get('image') as unknown as File
 
   // console.log(`IMAGE: ${_image}`)
 
@@ -30,37 +30,37 @@ export async function POST(req: NextRequest){
       }
     })
 
-    if (_image){
-      // sanitize filename
-      const date = new Date()
-      var filename = `${
-        createdProduct.id}_${ 
-          date.toJSON().toString()
-            .replaceAll('-', '_')
-            .replaceAll(':','_')
-            .replaceAll(':','_')
-            .replaceAll('.','_')}.`
-              .concat('',_image.name.split('.')[_image.name.split('.').length - 1])
+    // if (_image){
+    //   // sanitize filename
+    //   const date = new Date()
+    //   var filename = `${
+    //     createdProduct.id}_${ 
+    //       date.toJSON().toString()
+    //         .replaceAll('-', '_')
+    //         .replaceAll(':','_')
+    //         .replaceAll(':','_')
+    //         .replaceAll('.','_')}.`
+    //           .concat('',_image.name.split('.')[_image.name.split('.').length - 1])
 
-      var data = new FormData()
-      data.append('file', _image, filename)
+    //   var data = new FormData()
+    //   data.append('file', _image, filename)
       
-      const backendPOST = await fetch(`${process.env.NEXT_PUBLIC_IMAGE_API_URL}/upload`, {
-        method: 'POST',
-        body: data
-      }).then(res=>res.json())
+    //   const backendPOST = await fetch(`${process.env.NEXT_PUBLIC_IMAGE_API_URL}/upload`, {
+    //     method: 'POST',
+    //     body: data
+    //   }).then(res=>res.json())
 
-      if (backendPOST){
-        await prisma.product.update({
-          where: {
-            id: createdProduct.id
-          },
-          data: {
-            imageLink: filename
-          }
-        })
-      }
-    }
+      // if (backendPOST){
+      //   await prisma.product.update({
+      //     where: {
+      //       id: createdProduct.id
+      //     },
+      //     data: {
+      //       imageLink: filename
+      //     }
+      //   })
+      // }
+    // }
 
     return NextResponse.json({status:'ok', message:'create product success'})
   }catch(err){
