@@ -61,7 +61,7 @@ export default function AddListingPage() {
       method: 'POST',
       body: formData
     })
-    router.push(`${process.env.NEXT_PUBLIC_URL}/manager/listings`)
+    router.push(`/manager/listings`)
   }
 
   return (
@@ -139,7 +139,7 @@ export default function AddListingPage() {
               )}
             />
 
-            <FormField
+            {/* <FormField
               control={form.control}
               name="image"
               render={({ field }) => (
@@ -158,7 +158,7 @@ export default function AddListingPage() {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             <Button type="submit">Submit</Button>
           </form>
