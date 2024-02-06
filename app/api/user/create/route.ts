@@ -20,7 +20,8 @@ export async function POST(req: NextRequest){
       data: {
         firstName: body.firstName,
         lastName: body.lastName,
-        birthdate: body.birthdate,
+        role: "admin",
+        birthdate: new Date(body.birthdate),
         // birthdate: '2000-01-04T00:00:00.000+0900',
         email: body.email,
         username: body.username,
